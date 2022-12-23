@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <style>
+        .lead{
+            padding-top: 10px ;
+            padding-bottom: 10px;
+            padding-left: 6px;
+            margin-top: 10px;
+            background-color: #f6f6f6;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'sendemail' %}">Create a  new lead</a>
+    <hr/>
+
+    <h1>  This is all of our leads !! </h1>
+    <ul>
+        {% for i in leads %}
+        <div class="lead">
+        <a href="/{{i.pk}}"><li>{{i.first_name}} {{i.last_name}}</li></a><br>
+        <li>{{i.age}}</li>
+    </div>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
