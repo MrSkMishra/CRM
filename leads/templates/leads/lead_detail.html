@@ -1,27 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-    <style>
-        .lead{
-            padding-top: 10px ;
-            padding-bottom: 10px;
-            padding-left: 6px;
-            margin-top: 10px;
-            background-color: #f6f6f6;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
+<hr>
     
-    <button class="submit"><a href="/">Leads</a></button>
-    <h1>  This is all of Details of {{lead.first_name}} !! </h1>
+    <button class="submit"><a href="{% url 'leads:home' %}">Leads</a></button>
+    <h1>  This is all of Details of {{lead.first_name}} {{lead.last_name}} !! </h1>
    <p>This Peson's Age {{lead.age}}</p>
    <p>The Agent Responsible for this lead is : {{lead.agent}}</p>
-    
-</body>
-</html>
+
+   <hr/>
+   <button><a href="{% url 'leads:update' lead.pk %}">Update</a></button>
+   <button><a href="{% url 'leads:delete' lead.pk %}">Delete</a></button>
+{% endblock content %}
