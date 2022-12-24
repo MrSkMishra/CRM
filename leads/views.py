@@ -3,8 +3,10 @@ from .models import *
 from .forms import LeadForm,LeadModelForm
 # Create your views here.
 
+def landing_page(request):
+    return render (request,"landing.html")
+
 def home_page(request):
-    # return HttpResponse("kya chl ra hai")
     leads = Lead.objects.all()
     context = {
         "leads":leads
