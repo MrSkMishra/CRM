@@ -4,7 +4,7 @@ from leads import views
 
 app_name = "leads" 
 urlpatterns = [
-    path('',views.landing_page,name="landing"),
+    path('',views.LeadListView.as_view(),name="landing"),
     path('home/',views.home_page,name="home"),
     path('<int:pk>',views.lead_detail,name="detail"),
     path('<int:pk>/update/',views.lead_update,name="update"),
