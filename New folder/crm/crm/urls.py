@@ -1,4 +1,4 @@
-"""djcrm URL Configuration
+"""crm URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -13,25 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.views import LoginView,LogoutView
 from django.urls import path,include
-from leads.views import landing_page , LandingPageView ,SignUpView
-
-
-
+from leads.views import LandingPageView,SignupView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('leads/',LandingPageView.as_view() , name= "LandingPageView"),
-    path('',include('leads.urls',namespace="leads")),
+    path('',include("leads.urls",namespace="leads")),
+    path("leads/",LandingPageView.as_view(),name="LandingPageView"),
     path('login/',LoginView.as_view(),name="login"),
-    path('signup/',SignUpView.as_view(),name="signup"),
-    path('logout/',LogoutView.as_view(),name="logout")
-    
+    path('signup/',SignupView.as_view(),name="signup"),
+    path('logout/',LogoutView.as_view(),name="logout"),
 ]
 if settings.DEBUG:
-   
-    urlpatterns +=   static(settings.STATIC_URL,document_root =settings.STATIC_ROOT)
-
+    urlpatterns += static(settings.STATIC_URL,document_root = settings.STATIC_ROOT)
