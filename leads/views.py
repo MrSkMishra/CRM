@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect,reverse
 from django.http import HttpResponse
 from .models import *
 from .forms import LeadForm,LeadModelForm,CustomUserCreationForm
-from django.views import generic   #import  #TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
+from django.views import generic   #from django.views.generic import  #TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
 # Create your views here.
 # CRUD + L create , Retrieve, Update , Delete + List
 
