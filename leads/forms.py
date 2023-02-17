@@ -1,20 +1,25 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from .models import Lead
+from .models import Lead,Agent
 from django.contrib.auth.forms import UserCreationForm,UsernameField
 
 
 
 User = get_user_model()
+
 class LeadModelForm(forms.ModelForm):
     class Meta:
         model = Lead
         fields = (
             "first_name",
-            'last_name',
-            'age',
-            'agent',
+            "last_name",
+            "age",
+            "agent",
+            "description",
+            "phone_number",
+            "email",
         )
+
 
 class LeadForm(forms.Form):
     first_name = forms.CharField()
@@ -26,4 +31,30 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ("username",)
-        fields_classes = {'username':UsernameField}
+        fields_classes = {"username":UsernameField}
+
+
+class AssignAgentForm(forms.Form):
+    agent = forms.ModelChoiceField(queryset=Agent.objects.none())
+
+    def __init__(self, *args, **kwargs):
+        print(kwargs)
+        request = kwargs.pop("request")
+        # print(request.user)
+        agents = Agent.objects.filter(organisation=request.user.userprofile)
+        super(AssignAgentForm,self).__init__(*args, **kwargs)
+        self.fields["agent"].queryset = agents
+
+    # agent = forms.ChoiceField(choices=(
+    #     ("Agent1",'Agent1 Full Name'),
+    #     ('Agent2','Agent2 Full Name'),
+    # ))
+
+class LeadCategoryUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Lead
+        fields = (
+            "category",
+        )
+
+

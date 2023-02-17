@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+{% block content %}
+
+<div class="container px-5 py-24 mx-auto">
+    <div class="max-w-lg mx-auto">
+
+        <button type="submit"><a class="hover:text-blue-500" href="{% url 'leads:home' %}">Go Back To Leads</a></button>
+        <div class="py-5 border-t border-gray-200">
+            <h1> Assign an agent to this Lead !! </h1>
+        </div>
+
+        <form action="" method="post" class="mb-5">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <div class="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+                <button type="submit" class="w-full text-white bg-blue-500 hover:bg-blue-600 px-3 py-2 rounded-md">
+                    submit
+                </button>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock content %}
